@@ -1,152 +1,6 @@
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <style>
-      html {
-        --in: hsl(240, 100%, 3%);
-        --inlight: hsl(240, 100%, 9%);
-        --out: hsl(340, 100%, 50%);
-        --up: hsl(180, 100%, 50%);
-        --down: hsl(90, 100%, 50%);
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-        background: linear-gradient(to right, var(--in), var(--inlight));
-        font: 20px Consolas;
-        color: var(--up);
-        height: 100%;
-        overflow: hidden;
-      }
-
-      b {
-        color: var(--down);
-      }
-
-      ol {
-        margin: 0px;
-      }
-
-      #menu {
-        margin: 10px;
-        border: 3px solid var(--out);
-        border-radius: 10px;
-        display: flex;
-        flex: 0 0 60px;
-        flex-direction: column;
-      }
-
-      #main {
-        margin: 10px;
-        padding: 10px;
-        border: 3px solid var(--out);
-        border-radius: 10px;
-        flex: 1 0;
-        overflow: auto;
-      }
-
-      #gen {
-        flex-direction: column;
-      }
-
-      #info {
-        display: none;
-        flex-direction: column;
-      }
-
-      #avatar {
-        margin: 10px;
-        width: 256px;
-        height: 256px;
-        border: 3px solid var(--out);
-        border-radius: 25%;
-        transition: ease .5s;
-      }
-
-      #avatar:hover {
-        border-radius: 5%;
-      }
-
-      #buttongen {
-        background-color: var(--inlight);
-      }
-
-      #buttongen,
-      #buttoninfo {
-        margin: 5px;
-        padding: 5px;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        cursor: pointer;
-        fill: var(--out);
-        transition: ease .5s;
-      }
-
-      #buttongen:hover,
-      #buttoninfo:hover {
-        background-color: var(--inlight);
-      }
-
-      .scroll {
-        scrollbar-width: thin;
-        scrollbar-color: var(--down) transparent;
-      }
-
-      .scroll::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-        background-color: transparent;
-      }
-
-      .scroll::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background-color: var(--down);
-      }
-    </style>
-    <script>
-      function frame(style) {
-        for (let key = 0; key < document.getElementById(`main`).children.length; key++) document.getElementById(`main`).children[key].style.display = `none`;
-        for (let key = 0; key < document.getElementById(`menu`).children.length; key++) document.getElementById(`menu`).children[key].style.backgroundColor = `transparent`;
-        document.getElementById(style).style.display = `flex`;
-        document.getElementById(`button${style}`).style.backgroundColor = `var(--inlight)`;
-      };
-    </script>
-  </head>
-  <body>
-    <div id='menu'>
-      <svg xmlns='http://www.w3.org/2000/svg' id='buttongen' viewBox='0 0 512 512' onclick='frame(`gen`)'>
-        <path d='M256 12L0 234l26 30 24-21V440c0 33 27 60 60 60h112V304h70V500h110c33 0 60-27 60-60V244l24 21L512 234 256 12zM422 440c0 11-9 20-20 20h-70V264H182v196h-72c-11 0-20-9-20-20V209L256 65l166 144V440z' />
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" id='buttoninfo' viewBox="0 0 330 330" onclick='frame(`info`)'>
-        <path d="M165 0C74 0 0 74 0 165 0 256 74 330 165 330s165-74 165-165C330 74 256 0 165 0zM165 300c-74 0-135-61-135-135C30 91 91 30 165 30s135 61 135 135C300 239 239 300 165 300zM165 70c-11 0-20 9-20 20 0 11 9 20 20 20 11 0 20-9 20-20C185 79 176 70 165 70zM165 140c-8 0-15 7-15 15v90c0 8 7 15 15 15 8 0 15-7 15-15v-90C180 147 173 140 165 140z" />
-      </svg>
-    </div>
-    <div id='main' class='scroll'>
-      <div id='gen'>
-        <div style='font-size: 5vw; text-align: center;'><b>Freedom of Code</b></div>
-        <div style='font-size: 10px; text-align: center;'>название запривачено мной, а кофий идёт нахер</div>
-        <div style='height: 100px;'></div>
-        <div style='border: 3px solid var(--out); border-radius: 10px; text-align: center; padding: 10px;'>
-          <b style='font-size: 30px;'>Рекламный <s>системный</s> блок</b><br><br>
-          <div style='text-align: center;'>Инвайт на мой <a href='https://discord.gg/ynWdxRm'>сервер</a> в Discord</div>
-        </div>
-        <div style='height: 100px;'></div>
-        <div><b>Чёрный список</b><br>- Сервера: Unknown Gamers<br><br>- Пользователи: Kofiy, Мердед, 1nf1n1t1, Lire</div>
-      </div>
-      <div id='info'>
-        <div><b>Псевдонимы:</b> Датаслитый, Сэм (Самкхей)</div>
-        <div><b>Раса:</b> <s>ну уж точно не</s> Киборг</div>
-        <div><b>Факты:</b>
-          <ol>
-            <li>Разработчик данного сайта и Cybercord (ещё не вышел)</li>
-            <li>Уже знает всё о вас и готов продать информацию в даркнете</li>
-          </ol>
-        </div>
-        <b>Фото:</b>
-        <img id='avatar' src='https://cdn.discordapp.com/avatars/726707196783493172/62049b941fc080cec4785f9f375ab78c.png?size=4096'>
-      </div>
-    </div>
-  </body>
+  <script type='text/javascript'>
+    var s="=iunm?!!=ifbe?!!!!=nfub!dibstfu>(vug.9(?!!!!=tuzmf?!!!!!!iunm!|!!!!!!!!..jo;!itm)351-!211&-!4&*<!!!!!!!!..jomjhiu;!itm)351-!211&-!:&*<!!!!!!!!..pvu;!itm)451-!211&-!61&*<!!!!!!!!..vq;!itm)291-!211&-!61&*<!!!!!!!!..epxo;!itm):1-!211&-!61&*<!!!!!!~!!!!!!cpez!|!!!!!!!!nbshjo;!1<!!!!!!!!ejtqmbz;!gmfy<!!!!!!!!cbdlhspvoe;!mjofbs.hsbejfou)up!sjhiu-!wbs)..jo*-!wbs)..jomjhiu**<!!!!!!!!gpou;!31qy!Dpotpmbt<!!!!!!!!dpmps;!wbs)..vq*<!!!!!!!!ifjhiu;!211&<!!!!!!!!pwfsgmpx;!ijeefo<!!!!!!~!!!!!!c!|!!!!!!!!dpmps;!wbs)..epxo*<!!!!!!~!!!!!!pm!|!!!!!!!!nbshjo;!1qy<!!!!!!~!!!!!!$nfov!|!!!!!!!!nbshjo;!21qy<!!!!!!!!cpsefs;!4qy!tpmje!wbs)..pvu*<!!!!!!!!cpsefs.sbejvt;!21qy<!!!!!!!!ejtqmbz;!gmfy<!!!!!!!!gmfy;!1!1!71qy<!!!!!!!!gmfy.ejsfdujpo;!dpmvno<!!!!!!~!!!!!!$nbjo!|!!!!!!!!nbshjo;!21qy<!!!!!!!!qbeejoh;!21qy<!!!!!!!!cpsefs;!4qy!tpmje!wbs)..pvu*<!!!!!!!!cpsefs.sbejvt;!21qy<!!!!!!!!gmfy;!2!1<!!!!!!!!pwfsgmpx;!bvup<!!!!!!~!!!!!!$hfo!|!!!!!!!!gmfy.ejsfdujpo;!dpmvno<!!!!!!~!!!!!!$jogp!|!!!!!!!!ejtqmbz;!opof<!!!!!!!!gmfy.ejsfdujpo;!dpmvno<!!!!!!~!!!!!!$bwbubs!|!!!!!!!!nbshjo;!21qy<!!!!!!!!xjeui;!367qy<!!!!!!!!ifjhiu;!367qy<!!!!!!!!cpsefs;!4qy!tpmje!wbs)..pvu*<!!!!!!!!cpsefs.sbejvt;!36&<!!!!!!!!usbotjujpo;!fbtf!/6t<!!!!!!~!!!!!!$bwbubs;ipwfs!|!!!!!!!!cpsefs.sbejvt;!6&<!!!!!!~!!!!!!$cvuupohfo!|!!!!!!!!cbdlhspvoe.dpmps;!wbs)..jomjhiu*<!!!!!!~!!!!!!$cvuupohfo-!!!!!!$cvuupojogp!|!!!!!!!!nbshjo;!6qy<!!!!!!!!qbeejoh;!6qy<!!!!!!!!xjeui;!51qy<!!!!!!!!ifjhiu;!51qy<!!!!!!!!cpsefs.sbejvt;!21qy<!!!!!!!!dvstps;!qpjoufs<!!!!!!!!gjmm;!wbs)..pvu*<!!!!!!!!usbotjujpo;!fbtf!/6t<!!!!!!~!!!!!!$cvuupohfo;ipwfs-!!!!!!$cvuupojogp;ipwfs!|!!!!!!!!cbdlhspvoe.dpmps;!wbs)..jomjhiu*<!!!!!!~!!!!!!/tdspmm!|!!!!!!!!tdspmmcbs.xjeui;!uijo<!!!!!!!!tdspmmcbs.dpmps;!wbs)..epxo*!usbotqbsfou<!!!!!!~!!!!!!/tdspmm;;.xfclju.tdspmmcbs!|!!!!!!!!xjeui;!6qy<!!!!!!!!ifjhiu;!6qy<!!!!!!!!cbdlhspvoe.dpmps;!usbotqbsfou<!!!!!!~!!!!!!/tdspmm;;.xfclju.tdspmmcbs.uivnc!|!!!!!!!!cpsefs.sbejvt;!21qy<!!!!!!!!cbdlhspvoe.dpmps;!wbs)..epxo*<!!!!!!~!!!!=0tuzmf?!!!!=tdsjqu?!!!!!!gvodujpo!gsbnf)tuzmf*!|!!!!!!!!gps!)mfu!lfz!>!1<!lfz!=!epdvnfou/hfuFmfnfouCzJe)anbjoa*/dijmesfo/mfohui<!lfz,,*!epdvnfou/hfuFmfnfouCzJe)anbjoa*/dijmesfo\lfz^/tuzmf/ejtqmbz!>!aopofa<!!!!!!!!gps!)mfu!lfz!>!1<!lfz!=!epdvnfou/hfuFmfnfouCzJe)anfova*/dijmesfo/mfohui<!lfz,,*!epdvnfou/hfuFmfnfouCzJe)anfova*/dijmesfo\lfz^/tuzmf/cbdlhspvoeDpmps!>!ausbotqbsfoua<!!!!!!!!epdvnfou/hfuFmfnfouCzJe)tuzmf*/tuzmf/ejtqmbz!>!agmfya<!!!!!!!!epdvnfou/hfuFmfnfouCzJe)acvuupo%|tuzmf~a*/tuzmf/cbdlhspvoeDpmps!>!awbs)..jomjhiu*a<!!!!!!~<!!!!=0tdsjqu?!!=0ifbe?!!=cpez?!!!!=ejw!je>(nfov(?!!!!!!=twh!ynmot>(iuuq;00xxx/x4/psh031110twh(!je>(cvuupohfo(!wjfxCpy>(1!1!623!623(!podmjdl>(gsbnf)ahfoa*(?!!!!!!!!=qbui!e>(N367!23M1!345m37!41!35.32W551d1!44!38!71!71!71i223W415i81W611i221d44!1!71.38!71.71W355m35!32M623!345!367!23{N533!551d1!22.:!31.31!31i.81W375I293w2:7i.83d.22!1.31.:.31.31W31:M367!76m277!255W551{(!0?!!!!!!=0twh?!!!!!!=twh!ynmot>#iuuq;00xxx/x4/psh031110twh#!je>(cvuupojogp(!wjfxCpy>#1!1!441!441#!podmjdl>(gsbnf)ajogpa*(?!!!!!!!!=qbui!e>#N276!1D85!1!1!85!1!276!1!367!85!441!276!441t276.85!276.276D441!85!367!1!276!1{N276!411d.85!1.246.72.246.246D41!:2!:2!41!276!41t246!72!246!246D411!34:!34:!411!276!411{N276!81d.22!1.31!:.31!31!1!22!:!31!31!31!22!1!31.:!31.31D296!8:!287!81!276!81{N276!251d.9!1.26!8.26!26w:1d1!9!8!26!26!26!9!1!26.8!26.26w.:1D291!258!284!251!276!251{#!0?!!!!!!=0twh?!!!!=0ejw?!!!!=ejw!je>(nbjo(!dmbtt>(tdspmm(?!!!!!!=ejw!je>(hfo(?!!!!!!!!=ejw!tuzmf>(gpou.tj{f;!6wx<!ufyu.bmjho;!dfoufs<(?=c?Gsffepn!pg!Dpef=0c?=0ejw?!!!!!!!!=ejw!tuzmf>(gpou.tj{f;!21qy<!ufyu.bmjho;!dfoufs<(?обигбойж!ибрсйгбшжоп!нопк-!б!лпхйк!йеђу!обцжс=0ejw?!!!!!!!!=ejw!tuzmf>(ifjhiu;!211qy<(?=0ejw?!!!!!!!!=ejw!tuzmf>(cpsefs;!4qy!tpmje!wbs)..pvu*<!cpsefs.sbejvt;!21qy<!ufyu.bmjho;!dfoufs<!qbeejoh;!21qy<(?!!!!!!!!!!=c!tuzmf>(gpou.tj{f;!41qy<(?Сжлмбноьк!=t?тйтужноьк=0t?!вмпл=0c?=cs?=cs?!!!!!!!!!!=ejw!tuzmf>(ufyu.bmjho;!dfoufs<(?Йогбку!об!нпк!=b!isfg>(iuuqt;00ejtdpse/hh0zoXeySn(?тжсгжс=0b?!г!Ejtdpse=0ejw?!!!!!!!!=0ejw?!!!!!!!!=ejw!tuzmf>(ifjhiu;!211qy<(?=0ejw?!!!!!!!!=ejw?=c?Шђсоьк!трйтпл=0c?=cs?.!Тжсгжсб;!Volopxo!Hbnfst=cs?=cs?.!Рпмэипгбужмй;!Lpgjz-!Нжсеже-!2og2o2u2-!Mjsf=0ejw?!!!!!!=0ejw?!!!!!!=ejw!je>(jogp(?!!!!!!!!=ejw?=c?Ртжгепойнь;=0c?!Ебубтмйуьк-!Тюн!)Тбнлцжк*=0ejw?!!!!!!!!=ejw?=c?Сбтб;=0c?!=t?оф!фз!упшоп!ож=0t?!Лйвпсд=0ejw?!!!!!!!!=ejw?=c?Хблуь;=0c?!!!!!!!!!!=pm?!!!!!!!!!!!!=mj?Сбисбвпушйл!ебоопдп!тбкуб!й!Dzcfsdpse!)жъђ!ож!гьщжм*=0mj?!!!!!!!!!!!!=mj?Фзж!иобжу!гтђ!п!гбт!й!дпупг!рспебуэ!йохпснбчйя!г!ебсложуж=0mj?!!!!!!!!!!=0pm?!!!!!!!!=0ejw?!!!!!!!!=c?Хпуп;=0c?!!!!!!!!=jnh!je>(bwbubs(!tsd>(iuuqt;00deo/ejtdpsebqq/dpn0bwbubst08378182:78945:428307315:c:52gd191dfd5896g:g486bc89d/qoh@tj{f>51:7(?!!!!!!=0ejw?!!!!=0ejw?!!=0cpez?=0iunm?";
+    m=""; for (i=0; i<s.length; i++) {	if(s.charCodeAt(i) == 28){	  m+= '&';} else if (s.charCodeAt(i) == 23) {	  m+= '!';} else {	  m+=String.fromCharCode(s.charCodeAt(i)-1);	}}document.write(m);
+  </script>
 </html>
