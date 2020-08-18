@@ -1,82 +1,21 @@
 <html>
   <head>
     <title>Freedom of Code</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel='icon' href='favicon.ico' type='image/x-icon'>
     <meta charset='utf-8'>
-    <!--Торд, если ты это читаешь, имей совесть!-->
     <style>
-      html {
-        --in: hsl(240, 100%, 3%);
-        --inlight: hsl(240, 100%, 9%);
-        --out: hsl(340, 100%, 50%);
-        --up: hsl(180, 100%, 50%);
-        --down: hsl(90, 100%, 50%);
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-        background: linear-gradient(to right, var(--in), var(--inlight));
-        font: 20px Consolas;
-        color: var(--up);
-        height: 100%;
-        overflow: hidden;
-      }
-
       b {
-        color: var(--down);
+        color: var(--inner);
+        transition: color ease .5s;
       }
 
       ol {
         margin: 0px;
       }
 
-      #menu {
-        margin: 10px;
-        border: 3px solid var(--out);
-        border-radius: 10px;
-        display: flex;
-        flex: 0 0 60px;
-        flex-direction: column;
-      }
-
-      #main {
-        margin: 10px;
-        padding: 10px;
-        border: 3px solid var(--out);
-        border-radius: 10px;
-        flex: 1 0;
-        overflow: auto;
-      }
-
-      #gen {
-        flex-direction: column;
-      }
-
-      #info {
-        display: none;
-        flex-direction: column;
-      }
-
-      #avatar {
-        margin: 10px;
-        width: 256px;
-        height: 256px;
-        border: 3px solid var(--out);
-        border-radius: 25%;
-        transition: ease .5s;
-      }
-
-      #avatar:hover {
-        border-radius: 5%;
-      }
-
-      #buttongen {
-        background-color: var(--inlight);
-      }
-
       #buttongen,
-      #buttoninfo {
+      #buttoninfo,
+      #switcher {
         margin: 5px;
         padding: 5px;
         width: 40px;
@@ -84,17 +23,43 @@
         border-radius: 10px;
         cursor: pointer;
         fill: var(--out);
-        transition: ease .5s;
+        transition: fill ease .5s, background-color ease .5s;
       }
 
-      #buttongen:hover,
-      #buttoninfo:hover {
+      #buttongen {
         background-color: var(--inlight);
+      }
+
+      #info {
+        display: none;
+        flex-direction: column;
+      }
+
+      .block {
+        margin-top: 50px;
+        border: 3px solid var(--out);
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .avatar {
+        margin: 10px;
+        width: 256px;
+        height: 256px;
+        border: 3px solid var(--out);
+        border-radius: 25%;
+        transition: border-color ease .5s, border-radius ease .5s;
+      }
+
+      .avatar:hover {
+        border-radius: 10px;
       }
 
       .scroll {
         scrollbar-width: thin;
-        scrollbar-color: var(--down) transparent;
+        scrollbar-color: var(--outer) transparent;
+        transition: scrollbar-color ease .5s;
       }
 
       .scroll::-webkit-scrollbar {
@@ -105,7 +70,7 @@
 
       .scroll::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: var(--down);
+        background-color: var(--outer);
       }
     </style>
     <script>
@@ -115,31 +80,46 @@
         document.getElementById(style).style.display = `flex`;
         document.getElementById(`button${style}`).style.backgroundColor = `var(--inlight)`;
       };
+      function switcher(theme) {
+        if (theme || document.querySelector(`html`).style.cssText.startsWith(`--in: hsl(240, 100%, 5%);`)) {
+          localStorage.setItem(`theme`, 1);
+          document.querySelector(`html`).style.cssText = `--in: hsl(240, 100%, 95%);--inlight: hsl(240, 100%, 85%);--out: hsl(340, 100%, 50%);--outer: hsl(180, 100%, 15%);--inner: hsl(120, 100%, 25%);`;
+        } else {
+          localStorage.setItem(`theme`, 0);
+          document.querySelector(`html`).style.cssText = `--in: hsl(240, 100%, 5%);--inlight: hsl(240, 100%, 15%);--out: hsl(340, 100%, 50%);--outer: hsl(180, 100%, 50%);--inner: hsl(120, 100%, 50%);`;
+        };
+      };
     </script>
   </head>
-  <body>
-    <div id='menu'>
-      <svg xmlns='http://www.w3.org/2000/svg' id='buttongen' viewBox='0 0 512 512' onclick='frame(`gen`)'>
+  <body onload='switcher(+localStorage.getItem(`theme`))' style='margin: 0; height: 100%; display: flex; font: 20px Consolas; color: var(--outer); background-color: var(--in); overflow: hidden; transition: background-color ease .5s;'>
+    <div id='menu' style='margin: 10px; border: 3px solid var(--out); border-radius: 10px; display: flex; flex-direction: column; flex: 0 0 60px;'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' id='buttongen' onclick='frame(`gen`)'>
         <path d='M256 12L0 234l26 30 24-21V440c0 33 27 60 60 60h112V304h70V500h110c33 0 60-27 60-60V244l24 21L512 234 256 12zM422 440c0 11-9 20-20 20h-70V264H182v196h-72c-11 0-20-9-20-20V209L256 65l166 144V440z' />
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" id='buttoninfo' viewBox="0 0 330 330" onclick='frame(`info`)'>
-        <path d="M165 0C74 0 0 74 0 165 0 256 74 330 165 330s165-74 165-165C330 74 256 0 165 0zM165 300c-74 0-135-61-135-135C30 91 91 30 165 30s135 61 135 135C300 239 239 300 165 300zM165 70c-11 0-20 9-20 20 0 11 9 20 20 20 11 0 20-9 20-20C185 79 176 70 165 70zM165 140c-8 0-15 7-15 15v90c0 8 7 15 15 15 8 0 15-7 15-15v-90C180 147 173 140 165 140z" />
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 330' id='buttoninfo' onclick='frame(`info`)'>
+        <path d='M165 0C74 0 0 74 0 165 0 256 74 330 165 330s165-74 165-165C330 74 256 0 165 0zM165 300c-74 0-135-61-135-135C30 91 91 30 165 30s135 61 135 135C300 239 239 300 165 300zM165 70c-11 0-20 9-20 20 0 11 9 20 20 20 11 0 20-9 20-20C185 79 176 70 165 70zM165 140c-8 0-15 7-15 15v90c0 8 7 15 15 15 8 0 15-7 15-15v-90C180 147 173 140 165 140z' />
+      </svg>
+      <div style='margin-top: auto; text-align: center; font-size: 12px;'>Тема:</div>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' id='switcher' onclick='switcher()'>
+        <path d='m437 75c-100-100-261-100-362 0-100 100-100 261 0 362 100 100 261 100 362 0 100-100 100-261 0-362zm-196 61c0-8 7-15 15-15s15 7 15 15v80c0 8-7 15-15 15s-15-7-15-15zm15 231c-61 0-111-50-111-111 0-32 14-62 38-84 6-5 16-5 21 1s5 16-1 21c-18 15-28 38-28 61 0 45 36 81 81 81s81-36 81-81c0-23-10-45-27-61-6-5-7-15-1-21 5-6 15-7 21-1 24 21 37 51 37 83 0 61-50 111-111 111z' />
       </svg>
     </div>
-    <div id='main' class='scroll'>
-      <div id='gen'>
-        <div style='font-size: 5vw; text-align: center;'><b>Freedom of Code</b></div>
-        <div style='font-size: 10px; text-align: center;'>название запривачено мной, а кофий идёт нахер</div>
-        <div style='height: 100px;'></div>
-        <div style='border: 3px solid var(--out); border-radius: 10px; text-align: center; padding: 10px;'>
-          <b style='font-size: 30px;'>Рекламный <s>системный</s> блок</b><br><br>
-          <div style='text-align: center;'>Инвайт на мой <a href='https://discord.gg/ynWdxRm'>сервер</a> в Discord</div>
+    <div id='main' style='margin: 10px; padding: 10px; border: 3px solid var(--out); border-radius: 10px; flex: 1 0; overflow: auto;' class='scroll'>
+      <div id='gen' style='flex-direction: column; text-align: center;'>
+        <div style='font-size: 5vw;'><b>Freedom of Code</b></div>
+        <div style='font-size: 8px;'>© Все права на FoC принадлежат мне, Kofiy идёт нахер!</div>
+        <div class='block'>
+          <b style='font-size: 30px;'><s>Системный</s> Рекламный блок</b>
+          <div>Инвайт на мой <a href='https://discord.gg/ynWdxRm'>сервер</a> в Discord</div>
         </div>
-        <div style='height: 100px;'></div>
-        <div><b>Чёрный список</b><br>- Сервера: Unknown Gamers<br><br>- Пользователи: Kofiy, Мердед, 1nf1n1t1, Lire</div>
+        <div class='block'>
+          <b style='font-size: 30px;'>Чёрный список</b><br>
+          <div style='font-size: 12px;'>В [скобках] написаны сервера</div>
+          <div>Kofiy, Мердед, 1nf1n1t1, Lire, [Unknown Gamers], [Kofiy's server], [CatNet]</div>
+        </div>
       </div>
       <div id='info'>
-        <div><b>Псевдонимы:</b> Датаслитый, Сэм (Самкхей)</div>
+        <div><b>Псевдонимы:</b> Датаслитый, Сэмкхей</div>
         <div><b>Раса:</b> <s>ну уж точно не</s> Киборг</div>
         <div><b>Факты:</b>
           <ol>
@@ -148,7 +128,7 @@
           </ol>
         </div>
         <b>Фото:</b>
-        <img id='avatar' src='https://cdn.discordapp.com/avatars/726707196783493172/62049b941fc080cec4785f9f375ab78c.png?size=4096'>
+        <img class='avatar' src='https://sun9-64.userapi.com/U_CsQv0tuL-VlpOrU5rfBJDJ4Wb3UkLtL5pLig/adsaMt6ZdUs.jpg'>
       </div>
     </div>
   </body>
