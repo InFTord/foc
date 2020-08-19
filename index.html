@@ -19,17 +19,19 @@
         color: var(--inner);
         transition: color ease .5s;
       }
+
       i {
         font-size: 14px;
       }
+
       ol {
         margin: 0px;
       }
 
       img {
         margin: 10px;
-        width: 256px;
-        height: 256px;
+        width: 70%;
+        max-width: 256px;
         border: 3px solid var(--out);
         border-radius: 25%;
         transition: border-color ease .5s, border-radius ease .5s;
@@ -109,13 +111,30 @@
         text-align: center;
         padding: 10px;
       }
+
+      @media screen and (max-width: 500px) {
+        body {
+          flex-direction: column;
+          font-size: 14px;
+        }
+
+        #menu {
+          margin: 5px;
+          flex-direction: row;
+          flex: 0 0 60px;
+        }
+
+        #switcher {
+          margin-left: auto;
+        }
+      }
     </style>
     <script>
       function switcher(theme) {
         if (theme === 1 || document.querySelector('html').style.cssText.startsWith('--in: hsl(240, 100%, 5%);')) {
           localStorage.setItem('theme', 1);
           document.querySelector('html').style.cssText = '--in: hsl(0, 0%, 70%);--inlight: hsl(0, 0%, 50%);--out: hsl(0, 0%, 0%);--outer: hsl(0, 0%, 10%);--inner: hsl(0, 0%, 20%);';
-        } else if (theme ===  0 || document.querySelector('html').style.cssText.startsWith('--in: hsl(0, 0%, 5%);')) {
+        } else if (theme === 0 || document.querySelector('html').style.cssText.startsWith('--in: hsl(0, 0%, 5%);')) {
           localStorage.setItem('theme', 0);
           document.querySelector('html').style.cssText = '--in: hsl(240, 100%, 5%);--inlight: hsl(240, 100%, 15%);--out: hsl(340, 100%, 50%);--outer: hsl(180, 100%, 50%);--inner: hsl(120, 100%, 50%);';
         } else {
@@ -151,15 +170,15 @@
     </div>
     <div id="main">
       <div id="index">
-        <div style="font-size: 5vw;"><b>Freedom of Code</b></div>
+        <div style="font-size: 5vmax;"><b>Freedom of Code</b></div>
         <div style="font-size: 8px;">© Все права на FoC принадлежат мне, Kofiy идёт нафиг!</div>
         <div class="block">
-          <b style="font-size: 30px;"><s>Системный</s> Рекламный блок</b>
+          <b style="font-size: 3vmax;"><s>Системный</s> Рекламный блок</b>
           <div>- - - - - - - - - -</div>
           <div>Если вы хотите добавить недорекламу на сайт - <a href="https://discord.gg/ynWdxRm">мой сервер в Discord</a></div>
         </div>
         <div class="block">
-          <b style="font-size: 30px;">Чёрный список</b><br>
+          <b style="font-size: 3vmax;">Чёрный список</b><br>
           <div style="font-size: 12px;">В [скобках] написаны сервера</div>
           <div>Kofiy, Мердед, 1nf1n1t1, Lire, [Unknown Gamers], [Kofiy's server], [CatNet]</div>
         </div>
