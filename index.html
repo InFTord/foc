@@ -12,12 +12,12 @@
         color: var(--outer);
         background-color: var(--in);
         overflow: hidden;
-        transition: background-color ease .5s;
+        transition: background-color ease .3s;
       }
 
       b {
         color: var(--inner);
-        transition: color ease .5s;
+        transition: color ease .3s;
       }
 
       i {
@@ -34,7 +34,7 @@
         max-width: 256px;
         border: 3px solid var(--out);
         border-radius: 25%;
-        transition: border-color ease .5s, border-radius ease .5s;
+        transition: border-color ease .3s, border-radius ease .3s;
       }
 
       img:hover {
@@ -59,7 +59,7 @@
         overflow: auto;
         scrollbar-width: thin;
         scrollbar-color: var(--outer) transparent;
-        transition: scrollbar-color ease .5s;
+        transition: scrollbar-color ease .3s;
       }
 
       #main::-webkit-scrollbar {
@@ -83,7 +83,13 @@
         border-radius: 10px;
         cursor: pointer;
         fill: var(--out);
-        transition: fill ease .5s, background-color ease .5s;
+        transition: fill ease .3s, background-color ease .3s, transform ease .3s;
+      }
+
+      #buttonindex:hover,
+      #buttoninfo:hover,
+      #switcher:hover {
+        transform: scale(1.1);
       }
 
       #buttonindex {
@@ -112,7 +118,7 @@
         padding: 10px;
       }
 
-      @media screen and (max-width: 500px) {
+      @media screen and (max-width: 100vh) {
         body {
           flex-direction: column;
           font-size: 14px;
@@ -179,7 +185,7 @@
         </div>
         <div class="block">
           <b style="font-size: 3vmax;">Чёрный список</b><br>
-          <div style="font-size: 12px;">В [скобках] написаны сервера</div>
+          <div style="font-size: 12px;">В [скобках] написаны сервера Discord</div>
           <div>Kofiy, Мердед, 1nf1n1t1, Lire, [Unknown Gamers], [Kofiy's server], [CatNet]</div>
         </div>
       </div>
